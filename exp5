@@ -1,0 +1,35 @@
+no
+en
+config t
+host
+hostname dhcp_server
+int f0/0
+ip add 192.168.1.1 255.255.255.0
+no sh
+int f0/1
+ip add 192.168.2.1 255.255.255.0
+no sh
+exit
+do sh ip int br
+ip dhcp ex
+ip dhcp exlcuded address 192.168.1.1
+ip dhcp exlcuded address 192.168.2.1
+ip dhcp po
+ip dhcp pool 192.168.1.1
+net
+network 192.168.1.0 255.255.255.0
+def
+defalut-router 192.168.1.1
+dns
+dns-server 8.8.8.8
+exit
+ip dh
+ip dhcp po
+ip dhcp pool 192.168.2.1
+net
+network 192.168.1.0 255.255.255.0
+def
+defalut-router 192.168.2.1
+dns
+dns-server 8.8.8.8
+exit
